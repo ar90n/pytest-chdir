@@ -1,9 +1,9 @@
 import os
 import pytest
 from pathlib import Path
-import pytest_chdir
+from pytest_chdir import define_chdir_fixture
 
-pytest_chdir.inject_chdir_fixture("chroot", Path("/"), globals())
+define_chdir_fixture("chroot", Path("/"), __name__)
 
 
 def test_chtmpdir(chtmpdir):

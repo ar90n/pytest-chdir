@@ -24,12 +24,12 @@ def _chdir(dstdir: Path):
         os.chdir(lwd)
 
 
-def inject_chdir_fixture(name: str, dstdir: Path, globalss) -> None:
+def define_chdir_fixture(name: str, dstdir: Path, module_name: str) -> None:
     @pytest.fixture(scope="module")
     def _f():
         yield from _chdir(dstdir)
 
-    globalss[name] = _f
+    setattr(sys.modules[module_name], name, _f)
 
 
 @pytest.fixture
