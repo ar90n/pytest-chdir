@@ -7,7 +7,7 @@ import pytest
 
 def _get_datadir_path(request, fixture_name: str):
     try:
-        dirpath = request.getfixturevalue("datadir")
+        dirpath = request.getfixturevalue(fixture_name)
     except Exception as e:
         if str(type(e)) == "<class '_pytest.fixtures.FixtureLookupError'>":
             raise EnvironmentError("pytest-datadir is not found.")

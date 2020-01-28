@@ -7,16 +7,19 @@ define_chdir_fixture("chroot", Path("/"), __name__)
 
 
 def test_chtmpdir(chtmpdir):
-    assert os.getcwd() == chtmpdir
+    assert Path.cwd() == chtmpdir
 
 
 def test_chdatadir(chdatadir):
-    assert os.getcwd() == str(chdatadir)
+    assert Path.cwd() == chdatadir
+    assert Path.cwd().stem == Path(__file__).stem
 
 
 def test_chshared_datadir(chshared_datadir):
-    assert os.getcwd() == str(chshared_datadir)
+    assert Path.cwd() == chshared_datadir
+    assert str(Path.cwd().stem) == "data"
 
 
 def test_chroot(chroot):
-    assert os.getcwd() == "/"
+    assert Path.cwd() == Path("/")
+    assert Path.cwd() == chroot
